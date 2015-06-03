@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+		<title>The Geometry War Z</title>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+		<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="intro.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="animate.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+		<script id="vertex-shader" type="x-shader/x-vertex">
+
+		uniform bool textureMe;
+
+		attribute vec3 vPosition;
+		attribute vec3 vNormal;
+		attribute vec2 vTexC;
+
+		uniform mat4 ctm;
+		uniform mat4 pm;
+		uniform vec3 lightPos;
+		varying vec3 N, L, E, H;
+		varying vec2 uv;
+
+		attribute vec3 tvPosition;
+		attribute vec3 tvNormal;
+		attribute vec2 tvTexC;
+		uniform mat4 modelViewMatrix;
+
+		void main() {
+			if (textureMe) {
+				vec3 position = (ctm * vec4(tvPosition, 1.0)).xyz;
+				N = normalize(ctm * vec4(tvNormal, 0.0)).xyz;
+				L = normalize(lightPos - position);
+				E = normalize(-position);
+				H = normalize(L + E);
+				uv = tvTexC;
+
+				gl_Position = pm * vec4(position, 1.0);
+			}
+			else {
+		    	gl_Position = modelViewMatrix * vec4(vPosition, 1);
+			}
+		}
+		</script>
+
+		<script id="fragment-shader" type="x-shader/x-fragment">
+
+		uniform bool textureMe;
+
+		precision mediump float;
+
+		uniform sampler2D sampler;
+		uniform float shininess;
+		varying vec3 N, L, E, H;
+		varying vec2 uv;
+
+		uniform vec4 fColor;
+
+		uniform sampler2D uNormal;
+        uniform float uUseNormal;
+
+		void main() {
+			if (textureMe) {
+				vec4 tColor = texture2D(sampler, uv);
+				vec4 ambient = 0.3 * tColor;
+                float kd;
+                if (uUseNormal == 0.0)
+                {
+                    kd = abs(dot(L, N));
+                }
+                else
+                {   
+				    vec3 normal = normalize(texture2D(uNormal, uv).rgb * 2.0 - 1.0);
+                    kd = max(dot(L, normal), 0.0);
+                }
+				vec4 diffuse = kd * 0.6 * tColor;
+				float ks = pow(abs(dot(N, H)), shininess);
+				vec4 specular = 0.3 * ks * vec4(1.0, 1.0, 1.0, 1.0);
+				vec4 tfColor = ambient + diffuse + specular;
+				tfColor.a = 1.0;
+
+				gl_FragColor = tfColor;
+			}
+			else {
+			    gl_FragColor = fColor;
+			}
+		}
+		</script>
+
+		<script>
+			var gameOnly = true;
+		</script>
+
+		<script type="text/javascript" src="script.js"></script>
+
+
+		<script type="text/javascript" src="../Common/initShaders.js"></script>
+		<script type="text/javascript" src="../Common/MV.js"></script>
+		<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+		<script type="text/javascript" src="GeometryWarZ.js"></script>
+
+	</head>
+
+	<body>
+		<div class="game-container" id="game-container" style="display:block;">
+			<h2>The Geometry War Z</h2>
+				<div class="game-stats">
+					<h3>Health</h3> 
+					<div class="game-value">
+						<ul class="hearts" id="hearts">
+							<li><i class="fa fa-heart"></i></li>
+							<li><i class="fa fa-heart"></i></li>
+							<li><i class="fa fa-heart"></i></li>
+						</ul>
+					</div>
+					<h3>Ammo</h3>
+					<div class="game-value">
+						<ul class="ammo-list" id="ammo-list">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+					<h3>Score</h3>
+					<div class="game-value" id="score">0</div>
+					<h3 id="leveltag">Level</h3>
+					<div class="game-value" id="levelName">I'm Lovin' It</div>
+					<h4 id="bosstag"></h4>
+					<div class="game-value" id="bosstagval"></div>
+					<h5 id="bosshealth"></h5>
+					<div class="game-value" id="bosshealthval"></div>							
+				</div>
+
+				<div class="game-canvas">
+					<canvas id='myCanvas' width='800' height='540'>
+						Whoops!  It looks like your browser does not support the HTML5 canvas element.
+					</canvas>
+				</div>
+		</div>
+
+		<div id="game-over" style="display:none;">
+			GAME OVER
+			<p class="retry">Press F5 to Retry</p>
+		</div>
+
+</body>
+
+
+</html>

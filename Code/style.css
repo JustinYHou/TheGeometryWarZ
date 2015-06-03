@@ -1,0 +1,292 @@
+* { 
+	margin: 0; 
+	padding: 0; 
+}
+
+body style {
+	display: block;
+}
+
+body {
+	background-color: #000000;
+	overflow-y: hidden;
+}
+
+/**********************************
+             START MENU
+**********************************/
+#start-menu {
+	width: 100%;
+	height: 100%;
+	font-family: 'Audiowide', Arial, serif;
+	color: #17C3EB;
+	height: 100%;
+}
+
+#start-menu ul {
+	display: block;
+	text-align: center;
+	margin-top: 40px;
+}
+
+#start-menu li {
+	font-size: 36px;
+	display: inline-block;
+	margin: 0 50px;
+	padding: 15px 20px;
+	border: 2px solid #17C3EB;
+	border-radius: 5px;
+}
+
+#start-menu li:hover {
+	border: 2px solid #EBFF3B;
+	color: #EBFF3B;
+	cursor: pointer;
+}
+
+#start-menu .instructions {
+	font-size: 24px;
+	display: none;
+	text-align: center;
+	margin-top: 75px;
+}
+
+#start-menu .credits {
+	font-size: 22px;
+	display: block;
+	text-align: center;
+	margin-top: 75px;
+}
+
+.instructions table {
+	margin: 0 auto;
+}
+
+.instructions th {
+	padding-bottom: 15px;
+}
+
+.instructions td {
+	color: #FF295E;
+	padding: 0 15px;
+}
+
+.title-large {
+	font-weight: 500;
+	font-size: 140px;
+  	text-shadow: 5px 5px 0 #EBFF3B ;
+  	text-align: center;
+  	margin-top: 30px;
+}
+
+/**********************************
+             GAME
+**********************************/
+
+.game-container {
+	width: 1200px;
+	height: 700px;
+	background-color: #212121;
+	margin: 20px auto;
+	padding: 15px;
+	overflow-x: hidden; /* For Opera */
+	text-align: center;
+	-webkit-box-shadow:
+		inset #19d4ff 0 0 0 5px,
+		inset #18cdf7 0 0 0 1px,
+		inset #53dfff 0 0 0 10px,
+		inset #50d8f7 0 0 0 11px,
+		inset #8ce9ff 0 0 0 16px,
+		inset #88e2f7 0 0 0 17px,
+		inset #c5f4ff 0 0 0 22px,
+		inset #bfecf7 0 0 0 23px;
+	-moz-box-shadow:
+		inset #19d4ff 0 0 0 5px,
+		inset #18cdf7 0 0 0 1px,
+		inset #53dfff 0 0 0 10px,
+		inset #50d8f7 0 0 0 11px,
+		inset #8ce9ff 0 0 0 16px,
+		inset #88e2f7 0 0 0 17px,
+		inset #c5f4ff 0 0 0 22px,
+		inset #bfecf7 0 0 0 23px;
+	box-shadow:
+		inset #19d4ff 0 0 0 5px,
+		inset #18cdf7 0 0 0 1px,
+		inset #53dfff 0 0 0 10px,
+		inset #50d8f7 0 0 0 11px,
+		inset #8ce9ff 0 0 0 16px,
+		inset #88e2f7 0 0 0 17px,
+		inset #c5f4ff 0 0 0 22px,
+		inset #bfecf7 0 0 0 23px;
+}
+
+
+.game-stats {
+	width: 300px;
+	display: inline-block;
+	float: left;
+	margin-left: 25px;
+}
+
+.game-value {
+	
+	font-family: 'Audiowide', Arial, serif;
+	font-weight: 300;
+	font-size: 20px;
+	color: #FF295E;
+	margin: 10px 0 10px 30px;
+	text-align: left;
+}
+
+.game-canvas {
+	display: inline-block;
+	float: right;
+	width: 800px;
+	height: 540px;
+	border: 2px solid white;
+	color: white;
+	margin: 0 25px 0 0;
+}
+
+/**********************************
+             HEADERS
+**********************************/
+
+h2 {
+	font-family: 'Audiowide', Arial, serif;
+	font-weight: 500;
+	font-size: 48px;
+	color: #17C3EB;
+	margin: 20px auto 25px auto;
+  	text-shadow: 4px 4px 0 #EBFF3B ;
+}
+
+h3 {
+	font-family: 'Audiowide', Arial, serif;
+	font-weight: 500;
+	font-size: 20px;
+	color: #17C3EB;
+	margin: 10px 0;
+	text-align: left;
+  	/*text-shadow: 4px 4px 0 #EBFF3B ;*/
+}
+
+h4 {
+	font-family: 'Audiowide', Arial, serif;
+	font-weight: 500;
+	font-size: 20px;
+	color: #17C3EB;
+	margin: 10px 0;
+	text-align: left;
+  	/*text-shadow: 4px 4px 0 #EBFF3B ;*/
+}
+
+h5 {
+	font-family: 'Audiowide', Arial, serif;
+	font-weight: 500;
+	font-size: 20px;
+	color: #17C3EB;
+	margin: 10px 0;
+	text-align: left;
+  	/*text-shadow: 4px 4px 0 #EBFF3B ;*/
+}
+
+
+/**********************************
+             BUTTONS
+**********************************/
+
+/* main button block */
+.button {
+    display:inline-block;
+    background: #f00;
+    position: relative;
+    line-height: 60px;
+    text-align: center;
+    padding: 0 20px;
+    height: 60px;
+    margin-left: 0.5em;
+}
+
+/* common background color to all */
+.button, .button::before, .button::after {
+    background-color: #f00;
+}
+
+/* shared styles to make left and right lines */
+.button::before, .button::after {
+    content: "";
+    position: absolute;
+    height: 50px;
+    width: 5px;
+    top: 5px;
+    
+}
+
+/* pull the left 'line' out to the left */
+.button::before {
+    left: -5px;
+}
+
+/* pull the right 'line' out to the right */
+.button::after {    
+    right: -5px;
+}
+
+/**********************************
+            HEARTS
+**********************************/
+
+.hearts {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	min-height: 26px;
+}
+
+.hearts li {
+	display: inline-block;
+	margin: 0 5px;
+	padding: 0;
+	font-size: 16px;
+	color: #FF2121;
+}
+
+
+
+/**********************************
+            AMMO
+**********************************/
+
+.ammo-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	min-height: 26px;
+}
+
+.ammo-list li {
+	border-radius: 50%;
+	width: 15px;
+	height: 15px; 
+	background-color: #FFFF00;
+	display: inline-block;
+	margin: 0 5px;
+	padding: 0;
+}
+
+/**********************************
+            GAME OVER
+**********************************/
+#game-over {
+	font-family: 'Audiowide', Arial, serif;
+	width: 100%;
+	margin-top: 150px;
+	color: red;
+	font-size: 150px;
+	text-align: center;
+}
+
+.retry {
+	font-size: 75px;
+}
